@@ -132,5 +132,3 @@ Renewable-Energy-Forecasting/
 ## 👩‍💻 Author
 
 **Layan Mousa**
-
-Physics Graduate | AI & Machine Learning Trainee
