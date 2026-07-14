@@ -1,7 +1,7 @@
 # Renewable Energy Production Forecasting
 
 <p align="center">
-  <img output.png" width="850">
+  <img src="output.png" width="850">
 </p>
 
 A Machine Learning project that predicts renewable energy production using historical, temporal, and engineered features. The project follows a complete forecasting workflow including data exploration, preprocessing, feature engineering, model training, evaluation, and visualization.
@@ -113,7 +113,7 @@ The model predicts renewable energy production based on historical production va
 The following figure compares the actual historical production values with the model predictions.
 
 <p align="center">
-  <img src="actual_vs_predicted.png" width="850">
+  <img src="output2" width="850">
 </p>
 
 The predicted values closely follow the historical production trend, demonstrating the effectiveness of the Random Forest model and the engineered temporal features.
