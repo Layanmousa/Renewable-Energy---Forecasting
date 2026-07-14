@@ -113,7 +113,7 @@ The model predicts renewable energy production based on historical production va
 The following figure compares the actual historical production values with the model predictions.
 
 <p align="center">
-  <img src="output2" width="850">
+  <img src="output2.png" width="850">
 </p>
 
 The predicted values closely follow the historical production trend, demonstrating the effectiveness of the Random Forest model and the engineered temporal features.
