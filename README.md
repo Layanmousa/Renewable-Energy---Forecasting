@@ -1,132 +1,178 @@
-# 🌱 Renewable Energy Forecasting
+# Renewable Energy Production Forecasting
 
-> Machine Learning project for forecasting renewable energy production using historical energy data and weather-related features.
+<p align="center">
+  <img src="actual_vs_predicted.png" width="850">
+</p>
 
----
-
-## 📖 About
-
-This project demonstrates a complete Machine Learning workflow for predicting renewable energy production. It covers every stage of the forecasting pipeline, from data exploration to model evaluation.
+A Machine Learning project that predicts renewable energy production using historical, temporal, and engineered features. The project follows a complete forecasting workflow including data exploration, preprocessing, feature engineering, model training, evaluation, and visualization.
 
 ---
 
-## 🎯 Objective
+# Dataset
 
-Build a regression model capable of forecasting renewable energy production while understanding the complete forecasting process rather than focusing only on prediction accuracy.
+The dataset contains renewable energy production records collected over time.
+
+### Dataset Information
+
+- Records: **51,864**
+- Target Variable: **Production**
+
+### Features
+
+- Date
+- Start Hour
+- End Hour
+- Source
+- Day of Year
+- Day Name
+- Month
+- Season
 
 ---
 
-## 📊 Dataset Overview
+# Project Workflow
 
-| Feature | Description |
-|---------|-------------|
-| Date | Date of observation |
-| Start_Hour | Production start hour |
-| End_Hour | Production end hour |
-| Source | Energy source (Wind / Solar) |
-| Day_of_Year | Day number within the year |
-| Day_Name | Name of the day |
-| Month_Name | Month name |
-| Season | Season of the year |
-| Production | Target variable |
-
----
-
-## 🔄 Machine Learning Pipeline
-
-```text
-Load Dataset
-      │
-      ▼
-Data Understanding
-      │
-      ▼
-Exploratory Data Analysis (EDA)
-      │
-      ▼
-Data Preprocessing
-      │
-      ▼
+```
+Dataset
+   │
+   ▼
+Data Exploration
+   │
+   ▼
+Data Cleaning
+   │
+   ▼
 Feature Engineering
-      │
-      ▼
-Encoding
-      │
-      ▼
-Train-Test Split
-      │
-      ▼
+   │
+   ▼
+Lag Feature Creation
+   │
+   ▼
+Categorical Encoding
+   │
+   ▼
+Train/Test Split
+   │
+   ▼
 Random Forest Regressor
-      │
-      ▼
+   │
+   ▼
 Prediction
-      │
-      ▼
-Model Evaluation
+   │
+   ▼
+Performance Evaluation
 ```
 
 ---
 
-## 🤖 Model
-
-**Random Forest Regressor**
-
-Why Random Forest?
-
-- Handles nonlinear relationships
-- Robust to noisy data
-- Reduces overfitting by combining multiple decision trees
-- Performs well on structured datasets
-
----
-
-## 📈 Model Performance
-
-| Metric | Score |
-|--------|------:|
-| MAE | **840.49** |
-| RMSE | **1430.42** |
-| R² Score | **0.8709** |
-
-The model successfully explained approximately **87%** of the variance in renewable energy production.
-
----
-
-## 📚 Technologies Used
+# Technologies
 
 - Python
 - Pandas
 - NumPy
 - Matplotlib
-- Seaborn
 - Scikit-learn
-- Jupyter Notebook
-- Git
-- GitHub
 
 ---
 
-## 💡 Future Improvements
+# Feature Engineering
 
-- Apply One-Hot Encoding
-- Perform Hyperparameter Tuning
-- Add Feature Importance analysis
-- Use Cross Validation
-- Compare with Gradient Boosting and XGBoost
+To improve forecasting performance, several features were engineered, including:
+
+- Day of Year
+- Month
+- Season
+- Day Name
+- Encoded Energy Source
+- **Lag_1 (Previous Production Value)**
+
+The **Lag_1** feature allows the model to learn temporal dependencies, significantly improving prediction accuracy.
 
 ---
 
-## 📂 Repository Structure
+# Machine Learning Model
 
-```text
-Renewable-Energy-Forecasting/
+**Random Forest Regressor**
+
+The model predicts renewable energy production based on historical production values and temporal features.
+
+---
+
+# Model Performance
+
+| Metric | Score |
+|---------|-------:|
+| MAE | **377.43** |
+| RMSE | **610.80** |
+| R² Score | **0.9763** |
+
+---
+
+# Prediction Visualization
+
+The following figure compares the actual historical production values with the model predictions.
+
+<p align="center">
+  <img src="actual_vs_predicted.png" width="850">
+</p>
+
+The predicted values closely follow the historical production trend, demonstrating the effectiveness of the Random Forest model and the engineered temporal features.
+
+---
+
+# Key Improvement
+
+The largest improvement in this project came from introducing the **Lag_1** feature.
+
+Using the previous production value enabled the model to capture historical patterns, reducing prediction error and increasing forecasting accuracy.
+
+---
+
+# Skills Demonstrated
+
+- Machine Learning
+- Time Series Forecasting
+- Feature Engineering
+- Data Preprocessing
+- Random Forest Regression
+- Model Evaluation
+- Data Visualization
+- Python Programming
+
+---
+
+# Future Improvements
+
+- Adaptive Feature Engineering
+- Rolling Window Statistics
+- Lag_24 Feature
+- Hyperparameter Optimization
+- XGBoost
+- LightGBM
+- LSTM Forecasting
+- Transformer-based Forecasting
+- SHAP Explainability
+
+---
+
+# Repository Structure
+
+```
+Renewable-Energy---Forecasting/
 │
-├── Renewable_Energy_Forecasting.ipynb
-├── README.md
-├── Dataset.csv
-└── images/
+├── RenewableEnergyProject.ipynb
+├── Renewable-Energy.csv
+├── actual_vs_predicted.png
+└── README.md
 ```
 
+---
+
+# Author
+
+**Layan Mousa**
+
+GitHub: https://github.com/Layanmousa
 ---
 
 ## 👩‍💻 Author
