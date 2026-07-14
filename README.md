@@ -173,8 +173,4 @@ Renewable-Energy---Forecasting/
 **Layan Mousa**
 
 GitHub: https://github.com/Layanmousa
----
 
-## 👩‍💻 Author
-
-**Layan Mousa**
