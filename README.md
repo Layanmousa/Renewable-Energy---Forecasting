@@ -1,7 +1,7 @@
 # Renewable Energy Production Forecasting
 
 <p align="center">
-  <img src="actual_vs_predicted.png" width="850">
+  <img output.png" width="850">
 </p>
 
 A Machine Learning project that predicts renewable energy production using historical, temporal, and engineered features. The project follows a complete forecasting workflow including data exploration, preprocessing, feature engineering, model training, evaluation, and visualization.
