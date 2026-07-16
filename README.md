@@ -1,176 +1,264 @@
 # Renewable Energy Production Forecasting
 
-<p align="center">
-  <img src="output.png" width="700">
-</p>
+A machine learning time-series forecasting project that predicts renewable energy production using a chronological, leakage-safe workflow.
 
-A Machine Learning project that predicts renewable energy production using historical, temporal, and engineered features. The project follows a complete forecasting workflow including data exploration, preprocessing, feature engineering, model training, evaluation, and visualization.
+---
+
+# Project Objective
+
+This project aims to forecast future renewable energy production while preserving the chronological order of the data. The workflow follows best practices for time-series machine learning to avoid data leakage and produce reliable predictions.
 
 ---
 
 # Dataset
 
-The dataset contains renewable energy production records collected over time.
+Expected dataset:
 
-### Dataset Information
+```text
+Energy Production Dataset.csv
+```
 
-- Records: **51,864**
-- Target Variable: **Production**
-
-### Features
+Main features include:
 
 - Date
-- Start Hour
-- End Hour
+- Start_Hour
+- End_Hour
 - Source
-- Day of Year
-- Day Name
-- Month
 - Season
+- Production
 
 ---
 
 # Project Workflow
 
-```
-Dataset
-   │
-   ▼
-Data Exploration
-   │
-   ▼
-Data Cleaning
-   │
-   ▼
-Feature Engineering
-   │
-   ▼
-Lag Feature Creation
-   │
-   ▼
-Categorical Encoding
-   │
-   ▼
-Train/Test Split
-   │
-   ▼
-Random Forest Regressor
-   │
-   ▼
-Prediction
-   │
-   ▼
-Performance Evaluation
-```
-
----
-
-# Technologies
-
-- Python
-- Pandas
-- NumPy
-- Matplotlib
-- Scikit-learn
+1. Load and inspect the dataset
+2. Clean duplicate records
+3. Convert and sort dates
+4. Exploratory Data Analysis (EDA)
+5. Feature Engineering
+6. Create lag and rolling features
+7. Chronological Train/Test Split
+8. Data Preprocessing
+9. Train multiple regression models
+10. Time-Series Cross Validation
+11. Model Evaluation
+12. Residual Analysis
+13. Overfitting Check
+14. Hyperparameter Tuning
+15. Feature Importance
+16. Save the trained pipeline
 
 ---
 
 # Feature Engineering
 
-To improve forecasting performance, several features were engineered, including:
+The project generates historical features for each renewable energy source.
 
-- Day of Year
+Features include:
+
+- Lag_1
+- Lag_2
+- Rolling_Mean_3
+
+Time features include:
+
 - Month
+- Day
+- Day of Week
+- Weekend
+- Cyclical Month Encoding
+- Cyclical Weekday Encoding
+
+These features improve forecasting while preventing target leakage.
+
+---
+
+# Data Split
+
+The dataset is divided chronologically:
+
+- **80% Training**
+- **20% Testing**
+
+A random split is intentionally avoided because forecasting models should always predict future observations.
+
+---
+
+# Preprocessing
+
+The preprocessing pipeline includes:
+
+### Numerical Features
+
+- Median Imputation
+- StandardScaler
+
+### Categorical Features
+
+- Most Frequent Imputation
+- OneHotEncoder
+
+The entire preprocessing process is handled inside a Scikit-learn Pipeline.
+
+---
+
+# Models Compared
+
+The following regression models are evaluated:
+
+- Linear Regression
+- Decision Tree Regressor
+- Random Forest Regressor
+
+---
+
+# Baseline Forecast
+
+A persistence baseline is used:
+
+```text
+Prediction(t) = Production(t-1)
+```
+
+This baseline provides a simple benchmark to verify that machine learning models add predictive value.
+
+---
+
+# Evaluation Metrics
+
+The project evaluates models using:
+
+- MAE
+- RMSE
+- R² Score
+
+Additional analyses include:
+
+- Time-Series Cross Validation
+- Training vs Testing Error
+- Residual Analysis
+- Actual vs Predicted Visualization
+
+---
+
+# Time-Series Cross Validation
+
+Instead of standard K-Fold validation, the project uses:
+
+```python
+TimeSeriesSplit()
+```
+
+This ensures that each validation fold only uses historical observations to predict future ones.
+
+---
+
+# Hyperparameter Tuning
+
+Random Forest is optimized using:
+
+```python
+GridSearchCV()
+```
+
+Parameters include:
+
+- n_estimators
+- max_depth
+- min_samples_split
+- min_samples_leaf
+- max_features
+
+The best model is selected using RMSE from TimeSeriesSplit.
+
+---
+
+# Feature Importance
+
+The final Random Forest model identifies the most influential predictors.
+
+Typical important features include:
+
+- Previous Production
+- Rolling Mean
+- Energy Source
 - Season
-- Day Name
-- Encoded Energy Source
-- **Lag_1 (Previous Production Value)**
-
-The **Lag_1** feature allows the model to learn temporal dependencies, significantly improving prediction accuracy.
+- Time Features
 
 ---
 
-# Machine Learning Model
+# Saved Model
 
-**Random Forest Regressor**
+The trained forecasting pipeline is saved locally as:
 
-The model predicts renewable energy production based on historical production values and temporal features.
+```text
+renewable_energy_forecasting_pipeline.joblib
+```
 
----
-
-# Model Performance
-
-| Metric | Score |
-|---------|-------:|
-| MAE | **377.43** |
-| RMSE | **610.80** |
-| R² Score | **0.9763** |
+The model file is excluded from GitHub because of its size.
 
 ---
 
-# Prediction Visualization
+# Installation
 
-The following figure compares the actual historical production values with the model predictions.
-
-<p align="center">
-  <img src="output2.png" width="850">
-</p>
-
-The predicted values closely follow the historical production trend, demonstrating the effectiveness of the Random Forest model and the engineered temporal features.
+```bash
+pip install numpy pandas matplotlib scikit-learn joblib jupyter
+```
 
 ---
 
-# Key Improvement
+# Running the Project
 
-The largest improvement in this project came from introducing the **Lag_1** feature.
-
-Using the previous production value enabled the model to capture historical patterns, reducing prediction error and increasing forecasting accuracy.
+1. Place the dataset in the project folder.
+2. Open the notebook.
+3. Run all cells from top to bottom.
+4. Wait until GridSearchCV finishes.
+5. Review the evaluation results and generated plots.
 
 ---
 
-# Skills Demonstrated
+# Project Structure
 
-- Machine Learning
-- Time Series Forecasting
-- Feature Engineering
-- Data Preprocessing
-- Random Forest Regression
-- Model Evaluation
-- Data Visualization
-- Python Programming
+```text
+RenewableProject.ipynb
+Energy Production Dataset.csv
+README.md
+PROJECT_SUMMARY.md
+.gitignore
+```
+
+---
+
+# Key Findings
+
+- Chronological evaluation provides more realistic forecasting performance.
+- Lag and rolling features significantly improve prediction quality.
+- Time-Series Cross Validation produces more reliable model evaluation.
+- Residual analysis shows that extreme production values remain the most difficult to predict.
+
+---
+
+# Limitations
+
+- Weather data is not included.
+- Maintenance information is unavailable.
+- Only one future holdout period is evaluated.
+- A single model is used for all energy sources.
 
 ---
 
 # Future Improvements
 
-- Adaptive Feature Engineering
-- Rolling Window Statistics
-- Lag_24 Feature
-- Hyperparameter Optimization
-- XGBoost
-- LightGBM
-- LSTM Forecasting
-- Transformer-based Forecasting
-- SHAP Explainability
-
----
-
-# Repository Structure
-
-```
-Renewable-Energy---Forecasting/
-│
-├── RenewableEnergyProject.ipynb
-├── Renewable-Energy.csv
-├── actual_vs_predicted.png
-└── README.md
-```
+- Integrate weather features
+- Use longer lag windows
+- Train separate models for each energy source
+- Apply Walk-Forward Validation
+- Compare XGBoost and LightGBM
+- Explore deep learning forecasting models
+- Deploy the project using Streamlit or FastAPI
 
 ---
 
 # Author
 
 **Layan Mousa**
-
-GitHub: https://github.com/Layanmousa
-
