@@ -1,7 +1,5 @@
 # Renewable Energy Production Forecasting
 
-# Renewable Energy Production Forecasting
-
 ![Python](https://img.shields.io/badge/Python-3.11-blue)
 ![Scikit-Learn](https://img.shields.io/badge/Scikit--Learn-ML-orange)
 ![Pandas](https://img.shields.io/badge/Pandas-Data%20Analysis-150458?logo=pandas&logoColor=white)
