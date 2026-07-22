@@ -1,5 +1,14 @@
 # Renewable Energy Production Forecasting
 
+# Renewable Energy Production Forecasting
+
+![Python](https://img.shields.io/badge/Python-3.11-blue)
+![Scikit-Learn](https://img.shields.io/badge/Scikit--Learn-ML-orange)
+![Pandas](https://img.shields.io/badge/Pandas-Data%20Analysis-150458?logo=pandas&logoColor=white)
+![NumPy](https://img.shields.io/badge/NumPy-Scientific%20Computing-013243?logo=numpy&logoColor=white)
+![Time Series](https://img.shields.io/badge/Time%20Series-Forecasting-success)
+![License](https://img.shields.io/badge/License-MIT-green)
+
 A machine learning time-series forecasting project that predicts renewable energy production using a chronological, leakage-safe workflow.
 
 The project follows best practices for time-series machine learning, including chronological data splitting, TimeSeriesSplit cross-validation, feature engineering with historical observations, model comparison, hyperparameter tuning, and explainable model evaluation.
