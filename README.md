@@ -1,4 +1,4 @@
-# Renewable Energy Production Forecasting
+# Solar Energy Production Forecasting
 
 ![Python](https://img.shields.io/badge/Python-3.11-blue)
 ![Scikit-Learn](https://img.shields.io/badge/Scikit--Learn-ML-orange)
@@ -7,7 +7,7 @@
 ![Time Series](https://img.shields.io/badge/Time%20Series-Forecasting-success)
 ![License](https://img.shields.io/badge/License-MIT-green)
 
-A machine learning time-series forecasting project that predicts renewable energy production using a chronological, leakage-safe workflow.
+A machine learning time-series forecasting project that predicts solar-energy production using a chronological, leakage-safe workflow.
 
 The project follows best practices for time-series machine learning, including chronological data splitting, TimeSeriesSplit cross-validation, feature engineering with historical observations, model comparison, hyperparameter tuning, and explainable model evaluation.
 
@@ -39,7 +39,7 @@ The project follows best practices for time-series machine learning, including c
 
 ## Project Objective
 
-The objective of this project is to build a reliable machine learning workflow capable of forecasting renewable energy production while preserving the temporal structure of the data.
+The objective of this project is to build a reliable machine learning workflow capable of forecasting **solar-energy production** while preserving the temporal structure of the data.
 
 Unlike traditional machine learning problems, forecasting requires future observations to remain unseen during training. Therefore, the entire workflow was designed to prevent data leakage and produce realistic performance estimates.
 
@@ -87,7 +87,7 @@ Energy Production Dataset.csv
 
 ## Feature Engineering
 
-Historical information is generated independently for each renewable energy source.
+Historical information is generated from previously observed **solar-production values**.
 
 ### Historical Features
 
@@ -144,6 +144,41 @@ The following regression algorithms are compared:
 - Linear Regression
 - Decision Tree Regressor
 - Random Forest Regressor
+
+
+---
+
+# Results
+
+The following figures summarize the key outcomes of the forecasting workflow.
+
+## Chronological Train-Test Split
+
+The dataset was divided chronologically to preserve the temporal order of observations. Earlier records were used for training, while the latest observations were reserved for evaluating future forecasting performance.
+
+<p align="center">
+  <img src="images/chronological_train_test_split.png" width="900">
+</p>
+
+---
+
+## Final Model Comparison
+
+The tuned Random Forest achieved the lowest RMSE compared with the persistence baseline and the other regression models.
+
+<p align="center">
+  <img src="images/final_model_comparison.png" width="750">
+</p>
+
+---
+
+## Actual vs Predicted Solar Production
+
+The tuned Random Forest closely follows the observed solar-energy production during the unseen test period.
+
+<p align="center">
+  <img src="images/actual_vs_predicted.png" width="900">
+</p>
 
 ---
 
@@ -209,19 +244,20 @@ The best model is selected according to RMSE obtained from TimeSeriesSplit.
 
 ---
 
+
 ## Feature Importance
 
-The final Random Forest model identifies the most influential forecasting variables.
+The final tuned Random Forest model identifies the most influential forecasting variables.
 
 Typical high-impact features include:
 
 - Previous Production (Lag Features)
 - Rolling Mean
-- Energy Source
-- Season
+- Seasonal Information
 - Calendar Features
+- Time Features
 
-These results provide insight into which historical signals contribute most to renewable energy forecasting.
+These results provide insight into which historical patterns contribute most to accurate solar-energy forecasting.
 
 ---
 
@@ -230,7 +266,7 @@ These results provide insight into which historical signals contribute most to r
 The complete preprocessing and forecasting pipeline is saved as:
 
 ```text
-renewable_energy_forecasting_pipeline.joblib
+solar_energy_forecasting_pipeline.joblib
 ```
 
 The model file is intentionally excluded from GitHub because of its size.
@@ -247,11 +283,11 @@ pip install numpy pandas matplotlib scikit-learn joblib jupyter
 
 ## Running the Project
 
-1. Place the dataset inside the project directory.
-2. Open the notebook.
-3. Execute all notebook cells.
-4. Wait for GridSearchCV to complete.
-5. Review the generated evaluation metrics and visualizations.
+1. Clone the repository.
+2. Ensure the dataset is located inside the data/ directory.
+3. Open notebooks/renewable_energy_forecasting.ipynb.
+4. Run all notebook cells.
+5. Review the evaluation metrics and visualizations.
 
 ---
 
@@ -260,12 +296,24 @@ pip install numpy pandas matplotlib scikit-learn joblib jupyter
 ```text
 Renewable-Energy-Forecasting/
 │
-├── RenewableProject.ipynb
-├── Energy Production Dataset.csv
+├── data/
+│   └── Energy Production Dataset.csv
+│
+├── images/
+│   ├── chronological_train_test_split.png
+│   ├── final_model_comparison.png
+│   └── actual_vs_predicted.png
+│
+├── models/
+│   └── solar_energy_forecasting_pipeline.joblib
+│
+├── notebooks/
+│   └── renewable_energy_forecasting.ipynb
+│
 ├── README.md
 ├── PROJECT_SUMMARY.md
-├── .gitignore
-└── renewable_energy_forecasting_pipeline.joblib (generated)
+├── requirements.txt
+└── .gitignore
 ```
 
 ---
@@ -274,9 +322,9 @@ Renewable-Energy-Forecasting/
 
 - Chronological evaluation produces more realistic forecasting performance than random train-test splitting.
 - Lag and rolling features significantly improve predictive accuracy.
-- TimeSeriesSplit provides reliable model validation for temporal data.
-- Random Forest consistently outperforms simpler regression models.
-- Extreme production values remain the most challenging observations to predict.
+- TimeSeriesSplit provides reliable validation for temporal data.
+- The tuned Random Forest achieved the best forecasting performance.
+- Historical production patterns are the strongest predictors of future solar-energy production.
 
 ---
 
@@ -286,20 +334,18 @@ Renewable-Energy-Forecasting/
 - Maintenance events are not included.
 - Equipment operational status is unavailable.
 - Only a single future holdout period is evaluated.
-- One global model is trained for all renewable energy sources.
+- The project focuses exclusively on solar-energy production.
 
 ---
 
 ## Future Improvements
 
 - Integrate weather and environmental variables
-- Train source-specific forecasting models
 - Apply Walk-Forward Validation
 - Compare XGBoost, LightGBM, and CatBoost
 - Explore deep learning forecasting models (LSTM, GRU)
 - Generate prediction intervals
 - Deploy the forecasting model using FastAPI or Streamlit
-
 ---
 
 ## Technologies Used
